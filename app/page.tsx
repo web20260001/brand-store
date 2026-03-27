@@ -1,26 +1,21 @@
 'use client';
 
 export default function Home() {
-  // 硬編碼產品（暫時繞過 API，避免 401 錯誤）
+  // 目前只有一個商品（你之後可以繼續在陣列裡新增）
   const products = [
     {
       id: 1,
       title: "拉杆箱",
       price: { amount: 255, currencyCode: "USD" },
-      variantId: "10111565070640",   // 你的真實 variant ID
+      variantId: "51217893490992",   // ← 已改成你 Shopify 最新的正確 variant ID
     },
-    // 你可以繼續在這裡新增其他商品
   ];
 
   const handleBuy = (variantId: string) => {
-  if (!variantId) {
-    alert("Product not available");
-    return;
-  }
-
-  const checkoutUrl = `https://m9dtcg-0u.myshopify.com/cart/${variantId}:1`;
-  window.open(checkoutUrl, "_blank");
-};
+    // 使用你已驗證成功的自訂結帳域名
+    const checkoutUrl = `https://checkout.hsanat.com/cart/${variantId}:1`;
+    window.open(checkoutUrl, "_blank");
+  };
 
   return (
     <div style={{ 
@@ -43,14 +38,14 @@ export default function Home() {
             key={p.id}
             style={{
               border: "1px solid #ddd",
-              padding: "20px",
+              padding: "30px",
               borderRadius: "12px",
-              width: "280px",
-              boxShadow: "0 4px 12px rgba(0,0,0,0.1)"
+              width: "320px",
+              boxShadow: "0 4px 15px rgba(0,0,0,0.1)"
             }}
           >
-            <h3>{p.title}</h3>
-            <p style={{ fontSize: "22px", fontWeight: "bold", margin: "10px 0" }}>
+            <h3 style={{ marginBottom: "10px" }}>{p.title}</h3>
+            <p style={{ fontSize: "26px", fontWeight: "bold", margin: "15px 0" }}>
               {p.price.amount} {p.price.currencyCode}
             </p>
 
